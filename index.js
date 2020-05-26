@@ -36,6 +36,8 @@ bot.start(({ reply, from }) =>
 
 bot.command("set", async (ctx) => {
   const gasAlert = ctx.state.command.args[0];
+  if (!gasAlert) return ctx.reply(`Invalid alert value`);
+
   const alert = await Alert.findOne({ user: ctx.from.id });
 
   if (alert) {
