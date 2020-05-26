@@ -97,7 +97,7 @@ const checkGasPrices = async () => {
 
   for (let i = 0; i < alerts.length; i++) {
     const alert = alerts[i];
-    if (low < alert.value)
+    if (low < alert.value) {
       bot.telegram.sendMessage(
         alert.user,
         `*ALERT! Gas Prices below ${alert.value} Gwei*
@@ -106,6 +106,8 @@ const checkGasPrices = async () => {
           _Fast_: ${fast}`,
         extra.markdown()
       );
+      await alert.delete();
+    }
   }
 };
 
